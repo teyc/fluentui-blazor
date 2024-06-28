@@ -116,19 +116,13 @@ public partial class FluentNavGroup : FluentNavBase
 
     private async Task ToggleExpandedAsync()
     {
-
-        if (_negate)
-        {
-            Expanded = !Expanded;
-        }
-
         if (!Owner.Expanded && Owner.CollapsedChildNavigation)
         {
             await SetExpandedAsync(!_open);
         }
         else
         {
-            await SetExpandedAsync(Expanded);
+            await SetExpandedAsync(_negate ? !Expanded : Expanded);
         }
     }
 
